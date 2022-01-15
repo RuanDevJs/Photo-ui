@@ -1,28 +1,52 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @update:activeComponent="activeComponent = $event" />
+    <keep-alive>
+      <component :is="activeComponent" />
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header: () => import("./components/Header.vue"),
+    Home: () => import("./components/Home.vue"),
+    Login: () => import("./components/Login.vue")
+  },
+  data(){
+    return {
+      activeComponent: 'Login'
+    }
+  },
+  methods: {
+    handleActiveComponent(e){
+      console.log(e)
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body,h1,h2,h3,ul,li,a {
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  font-family: Poppins, sans-serif;
+  color: #1f1f1f;
+}
+
+ul ,li {
+  list-style: none;
+}
+
+#app {
+  max-width: 100vw;
+  height: 100vh;
+}
+
 </style>
