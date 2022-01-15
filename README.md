@@ -1,4 +1,4 @@
-# photoui
+# Photo UI
 
 ## Project setup
 ```
